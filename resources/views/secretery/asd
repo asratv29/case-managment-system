@@ -1,0 +1,85 @@
+
+       <div class="container-fluid">
+          <div class="row">
+             <div class="col-12 col-sm-4 col-md-4 offset-md-1 offset-sm-1">
+                <div class="card shadow card-outlined card-primary" style="width: 1000px">
+                    <div class="card-header">
+                        Reset password
+                    </div>
+
+                    @if(session()->has('resetCompelete'))
+                    <div class="text-success mt-2 ml-5 h4">
+                        {{ session()->get('resetCompelete') }}
+                    </div>
+                 @endif
+
+                 @if(session()->has('resetFaild'))
+                 <div class="text-warning mt-2 ml-5 h4 ">
+                     {{ session()->get('resetFaild') }}
+                 </div>
+              @endif
+
+                    <div class="card-body">
+                        <form action="/secretery/{{ $id->session }}" method="post" class="mb-3">
+                            @csrf
+                              <div class="input-group mb-2">
+                                 <input type="hidden" name="id" value="{{ $id->session}}" class="form-control" readonly>
+                                  <div class="input-group-append">
+                                 </div>
+                              </div>
+
+                              <div class="input-group mb-2">
+                                <input type="text" name="username" value="{{ $id->session }}" class="form-control" placeholder="Username" readonly required>
+                                <div class="input-group-append">
+                                   <div class="input-group-text">
+                                      <span class="fas fa-user"></span>
+                                   </div>
+                                </div>
+                             </div>
+
+                              <div class="input-group mb-2">
+                                 <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                 <div class="input-group-append">
+                                    <div class="input-group-text">
+                                       <span class="fas fa-lock"></span>
+                                    </div>
+                                 </div>
+
+                              </div>
+
+                              @error('password')
+                              <div class="text-danger m-3">
+                                  {{ $message }}
+                              </div>
+                                @enderror
+
+                              <div class="input-group mb-2">
+                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                                <div class="input-group-append">
+                                   <div class="input-group-text">
+                                      <span class="fas fa-lock"></span>
+                                   </div>
+                                </div>
+
+
+                             </div>
+                                @error('confirm_password')
+                                    <div class="text-danger m-3">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                              <div class="row">
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-block btn-primary">Reset</button>
+                                </div>
+
+                              </div>
+                           </form>
+                    </div>
+                </div>
+
+
+             </div>
+
+          </div>
+       </div>
